@@ -1,5 +1,4 @@
-﻿
-using CommunityToolkit.Mvvm.Messaging.Messages;
+﻿using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace MauiApp2.Messages;
 

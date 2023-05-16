@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace MauiApp2.ViewModel;
 
-public partial class MainViewModel : ObservableObject, IRecipient<DeleteItemMessage>
+public partial class MainViewModel : ObservableObject//, IRecipient<DeleteItemMessage>
 {
     IConnectivity connectivity;
     public MainViewModel(IConnectivity connectivity)
@@ -14,15 +14,15 @@ public partial class MainViewModel : ObservableObject, IRecipient<DeleteItemMess
         Items = new ObservableCollection<string>();
         this.connectivity = connectivity;
 
-        //WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
-        //{
-        //    MainThread.BeginInvokeOnMainThread(() =>
-        //    {
-        //        Delete(m.Value);
-        //    });
-        //});
-        
-        WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this);
+        WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                Delete(m.Value);
+            });
+        });
+
+        //WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this);
     }
 
     [ObservableProperty]
