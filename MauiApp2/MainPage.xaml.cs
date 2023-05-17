@@ -1,6 +1,6 @@
-﻿using MauiApp2.ViewModel;
+﻿using MessengerDemo.ViewModel;
 
-namespace MauiApp2;
+namespace MessengerDemo;
 
 public partial class MainPage : ContentPage
 {

@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MauiApp2.Messages;
+using MessengerDemo.Messages;
 using System.Collections.ObjectModel;
 
-namespace MauiApp2.ViewModel;
+namespace MessengerDemo.ViewModel;
 
 public partial class MainViewModel : ObservableObject//, IRecipient<DeleteItemMessage>
 {
