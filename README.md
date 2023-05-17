@@ -2,6 +2,8 @@
 
 Ref.: [A Better Pub/Sub Messenger for .NET Applications](https://www.youtube.com/watch?v=vD17OetzGXc)
 
+[Messaging Made Easy: A Guide to WeakReferenceMessenger in .NET MAUI](https://cedricgabrang.medium.com/messaging-made-easy-a-guide-to-weakreferencemessenger-in-net-maui-dc0d131163c)
+
 Doc.: [Messenger](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/messenger)
 
 #### Message
