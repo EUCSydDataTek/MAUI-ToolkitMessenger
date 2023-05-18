@@ -1,4 +1,4 @@
-﻿namespace MauiApp2;
+﻿namespace MessengerDemo;
 
 public partial class App : Application
 {

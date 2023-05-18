@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MauiApp2.Messages;
+using MessengerDemo.Messages;
 
-namespace MauiApp2.ViewModel;
+namespace MessengerDemo.ViewModel;
 
 [QueryProperty("Text", "Text")]
 public partial class DetailViewModel : ObservableObject
