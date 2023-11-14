@@ -1,4 +1,6 @@
-﻿namespace MessengerDemo;
+﻿using MessengerDemo.Views;
+
+namespace MessengerDemo;
 
 public partial class AppShell : Shell
 {

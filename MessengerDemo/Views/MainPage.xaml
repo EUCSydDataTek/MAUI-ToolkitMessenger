@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MessengerDemo.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:MessengerDemo.ViewModel"
+    x:DataType="viewmodel:MainViewModel">
+
+    <Grid
+        Padding="10"
+        ColumnDefinitions=".75*, .25*"
+        ColumnSpacing="10"
+        RowDefinitions="100, Auto, *"
+        RowSpacing="10">
+
+        <Image
+            Grid.ColumnSpan="2"
+            BackgroundColor="Transparent"
+            Source="logo.png" />
+
+        <Entry
+            Grid.Row="1"
+            Placeholder="Enter task"
+            Text="{Binding Text}" />
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Command="{Binding AddCommand}"
+            Text="Add" />
+
+        <CollectionView
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding Items}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Text="Delete" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="0,5">
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TapCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <Label FontSize="24" Text="{Binding .}" />
+                            </Frame>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

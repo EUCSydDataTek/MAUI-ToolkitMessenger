@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MessengerDemo.Views.DetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:MessengerDemo.ViewModel"
+    Title="DetailPage"
+    x:DataType="viewmodel:DetailViewModel">
+
+    <StackLayout Padding="20" Spacing="10">
+        <Label
+            FontSize="25"
+            HorizontalOptions="Center"
+            Text="{Binding Text}"
+            VerticalOptions="Center" />
+
+        <Button
+            BackgroundColor="Red"
+            Command="{Binding DeleteCommand}"
+            Text="Delete"
+            TextColor="White" />
+
+        <Button Command="{Binding GoBackCommand}" Text="Go Back" />
+    </StackLayout>
+</ContentPage>

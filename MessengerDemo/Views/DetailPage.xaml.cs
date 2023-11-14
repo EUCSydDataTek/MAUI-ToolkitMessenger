@@ -1,6 +1,6 @@
 using MessengerDemo.ViewModel;
 
-namespace MessengerDemo;
+namespace MessengerDemo.Views;
 
 public partial class DetailPage : ContentPage
 {

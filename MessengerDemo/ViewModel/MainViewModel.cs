@@ -2,17 +2,16 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MessengerDemo.Messages;
+using MessengerDemo.Views;
 using System.Collections.ObjectModel;
 
 namespace MessengerDemo.ViewModel;
 
-public partial class MainViewModel : ObservableObject//, IRecipient<DeleteItemMessage>
+public partial class MainViewModel : ObservableObject //, IRecipient<DeleteItemMessage>
 {
-    IConnectivity connectivity;
-    public MainViewModel(IConnectivity connectivity)
+    public MainViewModel()
     {
         Items = new ObservableCollection<string>();
-        this.connectivity = connectivity;
 
         WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
         {
@@ -22,7 +21,7 @@ public partial class MainViewModel : ObservableObject//, IRecipient<DeleteItemMe
             });
         });
 
-        //WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this);
+        //WeakReferenceMessenger.Default.Register(this);
     }
 
     [ObservableProperty]
@@ -32,19 +31,12 @@ public partial class MainViewModel : ObservableObject//, IRecipient<DeleteItemMe
     string text;
 
     [RelayCommand]
-    async Task Add()
+    void Add()
     {
         if (string.IsNullOrWhiteSpace(Text))
             return;
 
-        if (connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            await Shell.Current.DisplayAlert("Uh Oh!", "No Internet", "OK");
-            return;
-        }
-
         Items.Add(Text);
-        // add our item
         Text = string.Empty;
     }
 
