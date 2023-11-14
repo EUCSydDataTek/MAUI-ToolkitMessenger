@@ -15,13 +15,29 @@ public partial class MainViewModel : ObservableObject //, IRecipient<DeleteItemM
 
         WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
         {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                Delete(m.Value);
-            });
+            // Handle the message here, with r being the recipient and m being the
+            // input message. Using the recipient passed as input makes it so that
+            // the lambda expression doesn't capture "this", improving performance.
+
+            Delete(m.Value);
         });
 
         //WeakReferenceMessenger.Default.Register(this);
+    }
+
+    // Nødvendig metode for at implementere IRecipient<T>
+    public void Receive(DeleteItemMessage message)
+    {
+        Delete(message.Value);
+    }
+
+    [RelayCommand]
+    void Delete(string s)
+    {
+        if (Items.Contains(s))
+        {
+            Items.Remove(s);
+        }
     }
 
     [ObservableProperty]
@@ -41,25 +57,8 @@ public partial class MainViewModel : ObservableObject //, IRecipient<DeleteItemM
     }
 
     [RelayCommand]
-    void Delete(string s)
-    {
-        if (Items.Contains(s))
-        {
-            Items.Remove(s);
-        }
-    }
-
-    [RelayCommand]
     async Task Tap(string s)
     {
         await Shell.Current.GoToAsync($"{nameof(DetailPage)}?Text={s}");
-    }
-
-    public void Receive(DeleteItemMessage message)
-    {
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-            Delete(message.Value);
-        });
     }
 }

@@ -1,13 +1,14 @@
 # ToolkitMessenger
 
-Ref.: [A Better Pub/Sub Messenger for .NET Applications](https://www.youtube.com/watch?v=vD17OetzGXc)
+Ref.: [Messenger](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/messenger)
+
+[A Better Pub/Sub Messenger for .NET Applications](https://www.youtube.com/watch?v=vD17OetzGXc)
 
 [Messaging Made Easy: A Guide to WeakReferenceMessenger in .NET MAUI](https://cedricgabrang.medium.com/messaging-made-easy-a-guide-to-weakreferencemessenger-in-net-maui-dc0d131163c)
 
-Doc.: [Messenger](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/messenger)
 
 #### Message
-I folderen Messages er defineret en `DeleteItemMessage:
+I folderen Messages er defineret en `DeleteItemMessage`:
 
 ```csharp
 public class DeleteItemMessage : ValueChangedMessage<string>
@@ -37,10 +38,7 @@ I MainViewModel i constructoren abonneres på DeleteItemMessage message-klassen:
 ```csharp
 WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
 {
-    MainThread.BeginInvokeOnMainThread(() =>
-    {
-        Delete(m.Value);
-    });
+     Delete(m.Value);
 });
 ```
 
