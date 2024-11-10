@@ -13,26 +13,17 @@ public partial class MainViewModel : ObservableObject //, IRecipient<DeleteItemM
     {
         Items = new ObservableCollection<string>();
 
-        WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
-        {
-            // Handle the message here, with r being the recipient and m being the
-            // input message. Using the recipient passed as input makes it so that
-            // the lambda expression doesn't capture "this", improving performance.
+        // Handle the message here, with r being the recipient and m being the input message. 
+        WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) => OnDeleteMessageReceived(m.Value));
 
-            Delete(m.Value);
-        });
-
-        //WeakReferenceMessenger.Default.Register(this);
+        //WeakReferenceMessenger.Default.Register(this);    // Nødvendig for at implementere IRecipient<T>
     }
 
     // Nødvendig metode for at implementere IRecipient<T>
-    public void Receive(DeleteItemMessage message)
-    {
-        Delete(message.Value);
-    }
+    public void Receive(DeleteItemMessage message) => OnDeleteMessageReceived(message.Value);
 
     [RelayCommand]
-    void Delete(string s)
+    void OnDeleteMessageReceived(string s)
     {
         if (Items.Contains(s))
         {

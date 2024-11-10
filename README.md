@@ -7,8 +7,8 @@ Ref.: [Messenger](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm
 [Messaging Made Easy: A Guide to WeakReferenceMessenger in .NET MAUI](https://cedricgabrang.medium.com/messaging-made-easy-a-guide-to-weakreferencemessenger-in-net-maui-dc0d131163c)
 
 
-#### Message
-I folderen Messages er defineret en `DeleteItemMessage`:
+### Message
+I folderen `Messages` er defineret en `DeleteItemMessage`:
 
 ```csharp
 public class DeleteItemMessage : ValueChangedMessage<string>
@@ -19,7 +19,7 @@ public class DeleteItemMessage : ValueChangedMessage<string>
 }
 ```
 
-#### Send
+### Send
 
 Når *Delete* funktionen aktiveres i `DetailViewModel`, udsendes en `DeleteItemMessage`:
 
@@ -32,8 +32,8 @@ async Task Delete()
 }
 ```
 
-#### Receive
-I MainViewModel i constructoren abonneres på DeleteItemMessage message-klassen:
+### Receive
+I MainViewModel i constructoren abonneres på `DeleteItemMessage` message-klassen:
 
 ```csharp
 WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
@@ -44,4 +44,4 @@ WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
 
 I tilfælde af at der modtages en `DeleteItemMessage` vil metoden `Delete()` blive kaldt og vil slette
 det aktuelle item. På denne måde synkroniseres listen af items på forsiden, selv om der
-slettes et item i `DetailviewModel`.
+slettes et item i `DetailViewModel`. Og dette sker selv om `DetailsViewmodel` ikke har en reference til `MainPageViewModel`.
