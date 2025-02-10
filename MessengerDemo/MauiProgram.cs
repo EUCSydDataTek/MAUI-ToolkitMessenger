@@ -1,5 +1,6 @@
 ﻿using MessengerDemo.ViewModel;
 using MessengerDemo.Views;
+using Microsoft.Extensions.Logging;
 
 namespace MessengerDemo;
 
@@ -23,6 +24,11 @@ public static class MauiProgram
         builder.Services.AddTransient<DetailPage>();
         builder.Services.AddTransient<DetailViewModel>();
 
+#if DEBUG
+        builder.Logging.AddDebug();
+#endif
+
         return builder.Build();
-	}
+    }
 }
+
